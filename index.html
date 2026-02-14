@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <title>ساعة الأرض</title>
     <style>
-        body { margin:0; background:black; }
+        body {
+            margin: 0;
+            background: black;
+            color: white;
+            font-family: Arial;
+        }
         #clock {
-            position:absolute; top:20px; left:20px;
-            color:white; font-size:3rem;
-            background:rgba(0,0,0,0.5); padding:10px 25px;
-            border-radius:50px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 25px;
+            border-radius: 50px;
         }
         #earth {
-            width:100%; height:100vh;
-            background-image:url('https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57723/globe_west_2048.jpg');
-            background-size:cover;
-            background-position:center;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
     <div id="clock"></div>
-    <div id="earth"></div>
+    <img id="earth" src="https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57723/globe_west_2048.jpg" alt="Earth">
     <script>
         function updateClock() {
-            const d = new Date();
-            document.getElementById('clock').innerHTML = 
-                d.getHours().toString().padStart(2,'0') + ':' +
-                d.getMinutes().toString().padStart(2,'0') + ':' +
-                d.getSeconds().toString().padStart(2,'0');
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('clock').textContent = hours + ':' + minutes + ':' + seconds;
         }
         setInterval(updateClock, 1000);
         updateClock();
